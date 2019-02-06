@@ -40,6 +40,7 @@ func (c *lruExpiredCache) Set(key interface{}, data []byte) {
 		c.deleteLruItem(val.lruPos)       //删除原先在list中的位置
 		val.lruPos = c.updateNewItem(key) // 追加到list末尾，更新位置标示
 		val.expiredTime = -1
+		val.data = data
 		c.data[key] = val
 	} else {
 		var pos *list.Element
